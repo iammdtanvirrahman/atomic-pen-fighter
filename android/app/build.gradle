@@ -1,0 +1,40 @@
+plugins {
+    id "com.android.application"
+}
+
+android {
+    namespace "com.atomiccorporation.pengame"
+    compileSdk 36
+
+    defaultConfig {
+        applicationId "com.atomiccorporation.pengame"
+        minSdk 24
+        targetSdk 35
+        versionCode 1
+        versionName "6.0.0"
+    }
+
+    buildTypes {
+        debug {
+            applicationIdSuffix ".debug"
+            versionNameSuffix "-debug"
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    buildFeatures {
+        buildConfig true
+    }
+}
+
+dependencies {
+    implementation "androidx.webkit:webkit:1.17.1"
+}
