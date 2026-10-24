@@ -20,5 +20,5 @@ This folder contains a native Android **WebView wrapper** for Pen Game 6.0. The 
 ## Notes
 
 - The Android-specific HTML removes the browser/PWA install banner, since installing a native APK from inside a WebView is not appropriate.
-- Multiplayer needs internet. Because the packaged page runs on Android's local app-assets origin, test the invite/share URL on a real device before relying on it.
+- Multiplayer needs internet. The Android copy generates invitation links for the repository's GitHub Pages site so a friend can open the hosted web game. The native app's room-code join flow is also available; external invite links open the browser rather than automatically deep-linking into the APK.
 - No real-device runtime test or signed release build has been performed in this change. Test Local, AI, Online, 2D/3D switching, camera controls, back/pause behavior and fullscreen before publishing.
