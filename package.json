@@ -1,0 +1,16 @@
+{
+  "name": "pen-game",
+  "version": "1.0.0",
+  "description": "A browser recreation of the Bangladeshi school-bench pen game.",
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "build": "echo 'Static assets ready'"
+  },
+  "dependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "express": "^4.21.2",
+    "pngjs": "^7.0.0"
+  }
+}

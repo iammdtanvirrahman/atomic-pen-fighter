@@ -1,0 +1,7 @@
+{
+  "name": "Pen Game (কলম খেলবি?)",
+  "description": "A browser recreation of the Bangladeshi school-bench pen game developed by Md. Tanvir Rahman, Atomic Corporation Founder. Take turns flicking your pen with a slingshot drag, knock rival pens off the bench, and keep yours on it.",
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
