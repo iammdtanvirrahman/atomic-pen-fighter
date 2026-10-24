@@ -1,6 +1,6 @@
 # Atomic Pen Fighter — Android Studio project
 
-This folder contains a native Android **WebView wrapper** for Pen Game 6.0. The original game engine bundle is kept intact; Android packages the web assets locally so Local/AI play does not need a web server.
+This folder contains a native Android **WebView wrapper** for Pen Game 6.0. The 3D, physics and gameplay logic is reused from the existing game bundle. The Android-only copy adjusts invite-link generation to use the hosted web game and packages the assets locally so Local/AI play does not need a web server.
 
 ## Open in Android Studio
 
@@ -19,6 +19,6 @@ This folder contains a native Android **WebView wrapper** for Pen Game 6.0. The 
 
 ## Notes
 
-- The Android-specific HTML removes the browser/PWA install banner, since installing a native APK from inside a WebView is not appropriate.
+- The Android-specific HTML removes the browser/PWA install banner, since installing a native APK from inside a WebView is not appropriate. The web build's bundle is unchanged; only the Android copy uses the hosted page as the invite-link base.
 - Multiplayer needs internet. The Android copy generates invitation links for the repository's GitHub Pages site so a friend can open the hosted web game. The native app's room-code join flow is also available; external invite links open the browser rather than automatically deep-linking into the APK.
 - No real-device runtime test or signed release build has been performed in this change. Test Local, AI, Online, 2D/3D switching, camera controls, back/pause behavior and fullscreen before publishing.
