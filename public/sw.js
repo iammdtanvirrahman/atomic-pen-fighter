@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pen-game-v1.1';
+const CACHE_NAME = 'pen-game-v1.2';
 const PRECACHE_ASSETS = [
   '/',
   '/index.html',
@@ -9,7 +9,10 @@ const PRECACHE_ASSETS = [
   '/pwa-512x512.png',
   '/pwa-maskable-512x512.png',
   '/apple-touch-icon.png',
-  '/favicon-32x32.png'
+  '/favicon-32x32.png',
+  '/css/game.css',
+  '/js/pen-game.bundle.js',
+  '/js/pwa-install.js'
 ];
 
 self.addEventListener('install', (event) => {
