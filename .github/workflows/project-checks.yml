@@ -1,0 +1,47 @@
+name: Project checks
+
+on:
+  push:
+    paths:
+      - "src/**"
+      - "public/**"
+      - "android/app/src/main/assets/www/**"
+      - "scripts/**"
+      - "index.html"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/project-checks.yml"
+  pull_request:
+    paths:
+      - "src/**"
+      - "public/**"
+      - "android/app/src/main/assets/www/**"
+      - "scripts/**"
+      - "index.html"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/project-checks.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Build shared runtime assets and check project
+        run: npm run build
+      - name: Run smoke checks
+        run: npm test
+      - name: Ensure generated files are committed
+        run: git diff --exit-code -- public/css/game.css public/js/pwa-install.js android/app/src/main/assets/www/css/game.css

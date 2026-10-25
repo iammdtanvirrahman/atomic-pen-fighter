@@ -1,0 +1,21 @@
+# Node
+node_modules/
+npm-debug.log*
+*.log
+
+# Local credentials and environment
+.env
+.env.*
+!.env.example
+
+# Android / Gradle outputs
+android/.gradle/
+android/**/build/
+android/local.properties
+*.apk
+*.aab
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
