@@ -62,7 +62,7 @@
   // Register Service Worker for 100% offline gameplay
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
-      navigator.serviceWorker.register("/sw.js").then((reg) => {
+      navigator.serviceWorker.register("./sw.js").then((reg) => {
         console.log("Pen Game ServiceWorker registered:", reg.scope);
       }).catch((err) => {
         console.warn("ServiceWorker registration:", err);
