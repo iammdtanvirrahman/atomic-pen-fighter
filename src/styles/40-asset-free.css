@@ -1,0 +1,2 @@
+/* Asset-free mode: hide the pen image/skin picker; keep the built-in default pen in play. */
+.gallery-head:has(+ .pen-gallery), .pen-gallery { display: none !important; }

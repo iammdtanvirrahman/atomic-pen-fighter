@@ -24,6 +24,14 @@ async function exists(relativePath) {
   }
 }
 
+const cssModules = [
+  "src/styles/00-core.css",
+  "src/styles/10-visual-redesign.css",
+  "src/styles/20-table-ratio.css",
+  "src/styles/30-minimal-hud.css",
+  "src/styles/40-asset-free.css",
+];
+
 const requiredPaths = [
   "index.html",
   "server.js",
@@ -33,7 +41,6 @@ const requiredPaths = [
   "public/js/pwa-install.js",
   "public/sw.js",
   "public/manifest.webmanifest",
-  "src/styles/game.css",
   "src/pwa/install.js",
   "android/settings.gradle",
   "android/app/src/main/assets/www/index.html",
@@ -41,19 +48,29 @@ const requiredPaths = [
   "android/app/src/main/assets/www/js/pen-game.bundle.js",
 ];
 
-for (const path of requiredPaths) await exists(path);
+for (const path of [...requiredPaths, ...cssModules]) await exists(path);
 
-const [rootHtml, webHtml, androidHtml, sourceCss, webCss, androidCss, sourcePwa, webPwa] =
-  await Promise.all([
-    read("index.html"),
-    read("public/index.html"),
-    read("android/app/src/main/assets/www/index.html"),
-    read("src/styles/game.css"),
-    read("public/css/game.css"),
-    read("android/app/src/main/assets/www/css/game.css"),
-    read("src/pwa/install.js"),
-    read("public/js/pwa-install.js"),
-  ]);
+const [
+  rootHtml,
+  webHtml,
+  androidHtml,
+  ...styleAndInstallerFiles
+] = await Promise.all([
+  read("index.html"),
+  read("public/index.html"),
+  read("android/app/src/main/assets/www/index.html"),
+  ...cssModules.map(read),
+  read("public/css/game.css"),
+  read("android/app/src/main/assets/www/css/game.css"),
+  read("src/pwa/install.js"),
+  read("public/js/pwa-install.js"),
+]);
+
+const moduleCss = styleAndInstallerFiles.slice(0, cssModules.length).join("");
+const webCss = styleAndInstallerFiles[cssModules.length];
+const androidCss = styleAndInstallerFiles[cssModules.length + 1];
+const sourcePwa = styleAndInstallerFiles[cssModules.length + 2];
+const webPwa = styleAndInstallerFiles[cssModules.length + 3];
 
 const references = [
   [rootHtml, "./public/css/game.css", "root HTML stylesheet"],
@@ -73,8 +90,8 @@ for (const [html, reference, label] of references) {
 if (androidHtml.includes("pwa-install.js")) {
   failures.push("Android HTML should not load the browser PWA-install banner script.");
 }
-if (sourceCss !== webCss) failures.push("public/css/game.css is out of sync; run npm run build.");
-if (sourceCss !== androidCss) failures.push("Android game.css is out of sync; run npm run build.");
+if (moduleCss !== webCss) failures.push("public/css/game.css is out of sync; run npm run build.");
+if (moduleCss !== androidCss) failures.push("Android game.css is out of sync; run npm run build.");
 if (sourcePwa !== webPwa) failures.push("public/js/pwa-install.js is out of sync; run npm run build.");
 
 for (const bundlePath of [
@@ -94,5 +111,5 @@ if (failures.length) {
   for (const failure of failures) console.error(` - ${failure}`);
   process.exitCode = 1;
 } else {
-  console.log("Project checks passed: required files, deployment references, shared copies, and game bundles are present.");
+  console.log("Project checks passed: source modules, deployment references, shared assets, and platform game bundles are valid.");
 }

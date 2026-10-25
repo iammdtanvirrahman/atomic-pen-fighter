@@ -6,30 +6,26 @@ Atomic Pen Fighter is a browser-based recreation of the Bangladeshi school-bench
 
 ```text
 .
-├── android/                 Native Android wrapper (open this folder in Android Studio)
-├── docs/                    Architecture and contributor notes
-├── public/                  Files served by Express
-│   ├── assets/              Images and app icons
-│   ├── css/game.css         Generated runtime stylesheet
+├── .github/workflows/         CI and Android debug APK build
+├── android/                   Native Android wrapper and packaged web assets
+├── docs/                      Architecture and contributor notes
+├── public/                    Files served by Express / static hosting
+│   ├── assets/                Images and app icons
+│   ├── css/game.css           Generated, concatenated stylesheet
 │   ├── js/
-│   │   ├── pen-game.bundle.js  Compiled game engine
-│   │   └── pwa-install.js      Generated PWA installer
-│   ├── sw.js                Offline cache / service worker
-│   └── index.html           Web entry point for Express
-├── scripts/                 Build and project-integrity checks
+│   │   ├── pen-game.bundle.js Compiled web game engine
+│   │   └── pwa-install.js     Generated PWA installer
+│   ├── sw.js                  Offline cache / service worker
+│   └── index.html             Web entry point for Express
+├── scripts/                   Build and project-integrity checks
 ├── src/
-│   ├── game/                Notes on the current bundled engine
-│   ├── pwa/install.js       Editable PWA installer source
-│   └── styles/game.css      Editable stylesheet source
-├── index.html               Static-hosting entry point
-├── server.js                Express static server
-└── package.json             Developer commands and dependencies
+│   ├── game/                  Game engine source status and migration notes
+│   ├── pwa/install.js          Editable PWA installer source
+│   └── styles/                Ordered, editable CSS modules
+├── index.html                 Static-hosting entry point
+├── server.js                  Express static server
+└── package.json               Developer commands and dependencies
 ```
-
-The Android project has its own packaged assets at
-`android/app/src/main/assets/www/`. Keep the Android HTML and game bundle
-platform-specific: they intentionally omit the browser install banner and
-contain Android-specific invite-link behavior.
 
 ## Development
 
@@ -38,23 +34,16 @@ Requirements: Node.js 20 or newer and npm.
 ```bash
 npm ci
 npm run build
-npm run check
+npm test
 npm run dev
 ```
 
-Open the local server at `http://localhost:3000`. Run `npm test` to execute
-the repository's structural smoke checks. The build command syncs the editable
-stylesheet and PWA installer into their web/Android runtime locations, then
-checks that the deployment files are present and referenced correctly.
+Open the local server at `http://localhost:3000`. The build concatenates the ordered stylesheet modules into one production CSS file, syncs it to the Android package, copies the PWA installer to the web runtime, and validates expected deployment files. Run `npm test` for structural smoke checks.
 
-To build the native Android debug APK, open the `android/` folder in Android
-Studio and use **Build → Build APK(s)**, or run `./gradlew assembleDebug` from
-that folder with JDK 17 and Android SDK Platform 36 installed.
+To build the native Android debug APK, open the `android/` folder in Android Studio and use **Build → Build APK(s)**, or run `./gradlew assembleDebug` from that folder with JDK 17 and Android SDK Platform 36 installed.
 
-## Important source-code note
+## Game engine source status
 
-The full game engine is currently checked in as a compiled JavaScript bundle,
-not as its original editable module tree. Its minified internals have not been
-split into artificial files because that can break shared scope, gameplay, or
-the Android-specific build. See [the architecture notes](docs/ARCHITECTURE.md)
-before editing or replacing the engine bundle.
+The complete game engine is currently checked in as compiled JavaScript bundles at `public/js/pen-game.bundle.js` and `android/app/src/main/assets/www/js/pen-game.bundle.js`. The original editable engine source modules are not present in this branch. These platform-specific bundles are deliberately kept unchanged; they are not split by arbitrary line ranges because that can break shared scope, initialization order, rendering, physics, or multiplayer.
+
+See [the architecture notes](docs/ARCHITECTURE.md) for the safe module migration path.
