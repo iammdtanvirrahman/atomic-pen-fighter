@@ -1,0 +1,37 @@
+{
+  "id": "./",
+  "name": "Pen Game 6.0 (কলম খেলবি?)",
+  "short_name": "Pen Game",
+  "description": "A browser recreation of the Bangladeshi school-bench pen game.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#0a0b14",
+  "background_color": "#0a0b14",
+  "categories": [
+    "games",
+    "sports",
+    "entertainment"
+  ],
+  "icons": [
+    {
+      "src": "./public/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./public/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./public/pwa-maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
