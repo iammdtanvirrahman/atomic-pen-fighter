@@ -1,0 +1,106 @@
+/* Transparent Minimal HUD - No Black Belt, Compact Icons */
+#top {
+  position: fixed !important;
+  top: calc(8px + var(--sat, 0px)) !important;
+  left: calc(10px + var(--sal, 0px)) !important;
+  right: calc(10px + var(--sar, 0px)) !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  pointer-events: none !important;
+  padding: 0 !important;
+  width: auto !important;
+  max-width: none !important;
+  gap: 8px !important;
+}
+#top #turn {
+  pointer-events: none !important;
+  margin-right: auto !important;
+  padding: 4px 10px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  background: rgba(11, 13, 32, 0.72) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 999px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+  gap: 6px !important;
+  line-height: 1 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+#top #turn .dot {
+  width: 8px !important;
+  height: 8px !important;
+}
+#top #order {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  padding: 3px 6px !important;
+  background: rgba(11, 13, 32, 0.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 999px !important;
+  margin-right: 4px !important;
+}
+#top .chip b {
+  width: 18px !important;
+  height: 18px !important;
+  font-size: 10px !important;
+  line-height: 18px !important;
+}
+#top button {
+  pointer-events: auto !important;
+  width: 28px !important;
+  height: 28px !important;
+  min-height: 28px !important;
+  max-height: 28px !important;
+  padding: 0 !important;
+  font-size: 12px !important;
+  background: rgba(11, 13, 32, 0.72) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 50% !important;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35) !important;
+  display: inline-grid !important;
+  place-items: center !important;
+  opacity: 0.82 !important;
+  transition: opacity 0.15s, transform 0.15s !important;
+}
+#top button:hover, #top button:active {
+  opacity: 1 !important;
+  transform: scale(1.08) !important;
+}
+#top button[aria-label="Toggle 2D/3D View"],
+#top button[aria-label="Reset Camera"] {
+  width: auto !important;
+  height: 28px !important;
+  min-height: 28px !important;
+  padding: 0 8px !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  border-radius: 999px !important;
+  letter-spacing: 0.02em !important;
+}
+#top button svg {
+  width: 13px !important;
+  height: 13px !important;
+}
+#clk {
+  top: calc(44px + var(--sat, 0px)) !important;
+  min-width: 44px !important;
+  height: 28px !important;
+  font-size: 14px !important;
+  padding: 0 8px !important;
+  background: rgba(11, 13, 32, 0.75) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.2) !important;
+}
+#top #turn { background: #14172af5 !important; }
+#clk { background: #14172af8 !important; }
+#toast { background: #14172af8 !important; }
+.p { background: #121426fa !important; border-color: rgba(255,255,255,0.14) !important; }
+#scr { background: rgba(7, 8, 18, 0.94) !important; }
+
+

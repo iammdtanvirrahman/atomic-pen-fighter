@@ -1,16 +1,12 @@
-const CACHE_NAME = 'pen-game-v1.1';
+const CACHE_NAME = 'pen-game-v1.3';
+const APP_BASE = new URL('./', self.registration.scope);
+const asset = (path) => new URL(path, APP_BASE).toString();
 const PRECACHE_ASSETS = [
-  '/',
-  '/index.html',
-  '/manifest.webmanifest',
-  '/manifest.json',
-  '/icon.svg',
-  '/pwa-192x192.png',
-  '/pwa-512x512.png',
-  '/pwa-maskable-512x512.png',
-  '/apple-touch-icon.png',
-  '/favicon-32x32.png'
-];
+  './', './index.html', './manifest.webmanifest', './icon.svg',
+  './pwa-192x192.png', './pwa-512x512.png', './pwa-maskable-512x512.png',
+  './apple-touch-icon.png', './favicon-32x32.png', './css/game.css',
+  './js/pen-game.bundle.js', './js/pwa-install.js'
+].map(asset);
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -66,7 +62,7 @@ self.addEventListener('fetch', (event) => {
       }).catch(() => {
         // Fallback to cached index.html for navigation requests
         if (event.request.mode === 'navigate') {
-          return caches.match('/index.html');
+          return caches.match(asset('index.html'));
         }
       });
     })

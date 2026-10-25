@@ -6,11 +6,11 @@
   "scripts": {
     "dev": "node server.js",
     "start": "node server.js",
-    "build": "echo 'Static assets ready'"
+    "build": "node scripts/build.mjs && node scripts/check-project.mjs",
+    "check": "node scripts/check-project.mjs",
+    "test": "node scripts/check-project.mjs"
   },
   "dependencies": {
-    "@resvg/resvg-js": "^2.6.2",
-    "express": "^4.21.2",
-    "pngjs": "^7.0.0"
+    "express": "^4.21.2"
   }
 }
